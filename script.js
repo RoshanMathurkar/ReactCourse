@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
 // Using Javascript
 
 // const heading = document.createElement("h1");
@@ -24,7 +26,7 @@ const div1 = React.createElement(
         {id:"children"},
         [
             React.createElement("h1",{},"Parent Heading 1."),
-            React.createElement("h2",{},"Parent Heading 2.")
+            React.createElement("h2",{},"Parent Heading 2 from react🚀")
         ]
     )
 );
