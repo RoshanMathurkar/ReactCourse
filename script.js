@@ -23,18 +23,21 @@ console.log(jsxHeading);
 const TitleComp = () => {
     return <h1>Title from functional component</h1>
 };
-
+console.log(TitleComp);
 const num = 10;
  /* component composition */
 const HeadingComp2 = () => (
     <div id="container">
-        <h2>
+        <div>
         {
-            // we can run any JavaScript code here inside {}.
-            num+20
+            // we can run any JavaScript code or any jsx elements here inside {}.
+            jsxHeading
         }
-        </h2>
-        <TitleComp/> 
+        {num}
+        </div>
+        {<TitleComp/>}
+        {<TitleComp></TitleComp>}
+        {TitleComp()}
         <h2>Heading from functional component🚀</h2>
     </div>
 );
