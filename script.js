@@ -1,55 +1,84 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-//React.createelement => object => HTMLElement(Render);
-// const heading = React.createElement(
-//     "h1",
-//     {id:"heading"},
-//     "Episode03 🚀"
-// );
-// console.log(heading);
-//JSX = JavaScript syntax which is easier to create react elements - parcel - babel.
+/*
+    Food ordering App
+    *Header
+       - Logo
+       - nav links
+    *Body
+        - search
+        - restaurant container
+            - restaurant cards
+                -img
+                -name of restaurant, star rating, delivery time....
+    *footer
+        - copyright
+        - links
+        - address
+        - contact
+*/
 
-//JSX = converted to React.createElement => React element- JS object => Htmlelement(render).
-const jsxHeading = (
-    <h1 id="jsx-header" className="head">
-        React from JSX 🚀
-    </h1>
-);
-console.log(jsxHeading);
+const Header = () =>{
+    return (
+        <div className="header">
+            <div className="logo-container">
+                <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdaMYtVi9_tfNcpsbGGseU6ehYgV9UeU3h7A&usqp=CAU"/>
+            </div>
 
-// React functional component
-
-const TitleComp = () => {
-    return <h1>Title from functional component</h1>
-};
-console.log(TitleComp);
-const num = 10;
- /* component composition */
-const HeadingComp2 = () => (
-    <div id="container">
-        <div>
-        {
-            // we can run any JavaScript code or any jsx elements here inside {}.
-            jsxHeading
-        }
-        {num}
+            <div className="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
         </div>
-        {<TitleComp/>}
-        {<TitleComp></TitleComp>}
-        {TitleComp()}
-        <h2>Heading from functional component🚀</h2>
-    </div>
-);
+    )
+}
 
-const HeadingComp3 = function(){
-    return (<div id="container">
-            <TitleComp/> 
-            <HeadingComp2/> 
-            <h2>Heading from functional component🚀</h2>
-        </div>)
+// inline css - not recommended.
+// const styleCard = {
+//     backgroundColor : "#D3D3D3",
+// }
+
+const RestaurantCard = () =>{
+    return (
+        <div className="res-cards" style={{backgroundColor : "#D3D3D3"}}>
+            <img 
+                className="res-card-img" 
+                alt="cardImg" 
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/iegvwgmimnzscztxg0rr"/>
+            <h3>The Asanzo</h3>
+            <h5>North Indian, Chinese</h5>
+            <h5>Rating 4.5</h5>
+            <h5>30 minutes</h5>
+        </div>
+    )
+};
+
+const BodyComp = () => {
+    return (
+        <div className="main-body">
+            <div className="search">Search</div>
+
+            <div className="restaurant-container">
+            <RestaurantCard />
+            </div>
+        </div>
+    )
+}
+
+const AppLayout = () =>{
+    return (
+        <div className='app'>
+            <Header/>
+            <BodyComp />
+        </div>
+    )
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComp2 />);
+root.render(<AppLayout />);
