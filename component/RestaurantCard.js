@@ -4,7 +4,10 @@ import { card_img } from "../utils/constant";
 const RestaurantCard = (props) =>{
     const {resData} = props;
 
-    const {cloudinaryImageId,name,cuisines,avgRating,deliveryTime,costForTwo} = resData?.info;
+    let {cloudinaryImageId,name,cuisines,avgRating,costForTwo,sla} = resData?.info;
+    {
+        avgRating=avgRating?avgRating:3;
+    }
     return (
         <div className="res-cards" style={{backgroundColor : "#D3D3D3"}}>
             <div className="res-cards-img" >
@@ -15,11 +18,11 @@ const RestaurantCard = (props) =>{
                 />
             </div>
             <div className="res-cards-details">
-                <h3>{name}</h3>
-                <h5>{cuisines.join(",")}</h5>
+                <h4>{name}</h4>
+                <p>{cuisines.join(",")}</p>
                 <p>{"⭐"+avgRating}</p>
-                <p>{"Delivert time:"+deliveryTime+" minutes"}</p>
                 <p>{costForTwo}</p>
+                <p>{sla.deliveryTime} minutes</p>
             </div>
             
         </div>
