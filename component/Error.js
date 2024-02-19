@@ -5,7 +5,7 @@ const Error = () =>{
     console.log(err);
     return(
         <div>
-            <h1>Error= {err.status}:Page{err.statusText} ...</h1>
+            <h1>Error= {err.status}:Page{err.statusText}.</h1>
         </div>
     )
 }
