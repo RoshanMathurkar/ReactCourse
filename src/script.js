@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import BodyComp from "../component/BodyComp";
 import Header from "../component/Header"
@@ -7,6 +7,14 @@ import Contact from "../component/Contact";
 import Error from "../component/Error";
 import RestaurantMenu from "../component/RestaurantMenu";
 import {createBrowserRouter , Outlet, RouterProvider} from "react-router-dom";
+import { Suspense } from "react";
+//import Grocery from "../component/Grocery";
+
+//code spliting 
+//chunking  
+//lazy loading
+//on demand loading
+const Grocery = lazy(()=>import("../component/Grocery"));
 
 const AppLayout = () =>{
     return (
@@ -34,6 +42,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/contact",
                 element:<Contact />,
+            },
+            {
+                path:"/grocery",
+                element: <Suspense fallback={<h1>Loading.........</h1>}><Grocery /></Suspense>,
             },
             {
                 path:"/restaurant/:resID", //for making dynamic path we use ":" and res id will be unique for every restaurant.

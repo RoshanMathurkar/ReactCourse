@@ -1,0 +1,104 @@
+/* #root{
+    color: rgb(183, 93, 93);
+} */
+
+/* body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.header{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.header .logo{
+    width: 200px;
+    mix-blend-mode: multiply;
+}
+
+.nav-items > ul{
+    display: flex;
+    list-style: none;
+}
+
+.nav-items > ul > li{
+    padding: 10px;
+    margin: 20px;
+    font-size: 24px;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: black;
+}
+
+.main-body,.shimmer-container{
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.res-cards,.shimmer-card{
+    width: 300px;
+    text-align: center;
+    padding: 5px;
+    margin: 3px;
+    border-radius: 10px;
+}
+
+.res-cards:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.res-card-img{
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.res-cards-details p{
+    color: rgb(93, 92, 92);
+    font-size: 14px;
+}
+
+.restaurant-container,.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top-rated-btn{
+    margin: 10px 10px;
+    width: 200px;
+}
+
+.all-restaurants{
+    margin: 10px 10px;
+    width: 150px;
+}
+
+.shimmer-card{
+    height: 300px;
+    background-color: #f0eeee;
+}
+
+.login-btn{
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.user-card{
+    border: 1px solid black;
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    color: rgb(63, 79, 79);
+    background-color: rgb(223, 220, 220);
+} */
