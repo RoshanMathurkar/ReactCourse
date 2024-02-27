@@ -1,11 +1,11 @@
 import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
-import BodyComp from "../component/BodyComp";
-import Header from "../component/Header"
-import About from "../component/About";
-import Contact from "../component/Contact";
-import Error from "../component/Error";
-import RestaurantMenu from "../component/RestaurantMenu";
+import BodyComp from "./BodyComp";
+import Header from "./Header"
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+import RestaurantMenu from "./RestaurantMenu";
 import {createBrowserRouter , Outlet, RouterProvider} from "react-router-dom";
 import { Suspense } from "react";
 //import Grocery from "../component/Grocery";
@@ -14,7 +14,7 @@ import { Suspense } from "react";
 //chunking  
 //lazy loading
 //on demand loading
-const Grocery = lazy(()=>import("../component/Grocery"));
+const Grocery = lazy(()=>import("./Grocery"));
 
 const AppLayout = () =>{
     return (

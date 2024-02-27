@@ -1,5 +1,5 @@
-import { resData } from "../utils/constant";
-import { card_img } from "../utils/constant";
+import { resData } from "../../utils/constant";
+import { card_img } from "../../utils/constant";
 
 const RestaurantCard = (props) =>{
     const {resData} = props;

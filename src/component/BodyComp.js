@@ -2,7 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./ShimmerUI";
 import { Link } from "react-router-dom";
-import useStatusOnline from "../utils/useStatusOnline";
+import useStatusOnline from "../../utils/useStatusOnline";
 
 const BodyComp = () => {
     
@@ -35,9 +35,9 @@ const BodyComp = () => {
         )
     }
     return restaurant.length === 0 ? <Shimmer /> :(
-        <div className="main-body">
+        <div className="border border4-black-600 px-3 py-3 m-">
             
-            <input className="search-box" type="text" value={searchItem} onChange={(e)=>{
+            <input className="border" type="text" value={searchItem} onChange={(e)=>{
                 setSearchItem(e.target.value)
             }}/>
             
