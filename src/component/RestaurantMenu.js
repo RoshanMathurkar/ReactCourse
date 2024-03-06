@@ -2,46 +2,78 @@ import { useEffect, useState } from "react";
 import Shimmer from "./ShimmerUI";
 import { useParams } from "react-router-dom";
 import useRestaurentMenu from "../../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
-const RestaurantMenu = ()=>{
+const RestaurantMenu = () => {
+  const resInfo = useRestaurentMenu();
 
-    const resInfo = useRestaurentMenu();
+  const dummy = "dummy data."
 
-    if(resInfo === null){
-        return <Shimmer/>;
-    } 
-    
-    const {name,cuisines,costForTwoMessage,areaName,sla,totalRatingsString,avgRatingString} = resInfo?.cards[2]?.card?.card?.info;
-    
-    const {itemCards} = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards 
-    ?  resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card :resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-    ;
-    
-    return (
-        <div className="res-info">
-            <h1>{name}</h1>
-            <h5>{cuisines.join(", ")}</h5>
-            <h5>{areaName}, {sla.lastMileTravelString}</h5>
-            <h5>{avgRatingString}</h5>
-            <h5>{totalRatingsString}</h5>
-            <hr/>
-            <h2>{itemCards[0]?.card?.info?.category}</h2>
-            {
-                itemCards.map((resInfo)=>{
-                    return (
-                        <li key={resInfo?.card?.info?.id}>
-                            {resInfo?.card?.info?.name}
-                            <br/>
-                            ₹ {
-                            resInfo?.card?.info?.price ? (resInfo?.card?.info?.price/100):(resInfo?.card?.info?.defaultPrice/100)
-                            }<br/>
-                            {resInfo?.card?.info?.description ? resInfo?.card?.info?.description : ''}<hr/>
-                        </li>
-                    )
-                })
-            }
+  const [showIndex, setShowIndex] = useState(null);
+
+  if (resInfo === null) {
+    return <Shimmer />;
+  }
+  //console.log(resInfo);
+
+  const {
+    name,
+    cuisines,
+    costForTwoMessage,
+    areaName,
+    sla,
+    totalRatingsString,
+    avgRatingString,
+  } = resInfo?.cards[0]?.card?.card?.info;
+
+  const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR
+    ?.cards[1]?.card?.card?.itemCards
+    ? resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+        ?.card
+    : resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+        ?.card;
+  //console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  //console.log(categories);
+
+  return (
+    <div className="p-4 m-3 border-2 border-black-200">
+      <h1 className="mb-6 font-bold text-3xl text-center">{name}</h1>
+      <div className="flex justify-around my-4">
+        <div>
+          <h3 className="font-bold">{name}</h3>
+          <h5>{cuisines.join(", ")}</h5>
+          <h5>
+            {areaName}, {sla.lastMileTravelString}
+          </h5>
         </div>
-    )
-}
+
+        <div className="rounded shadow-black p-2 shadow-sm">
+          <h5 className="font-bold text-green-500">⭐{avgRatingString}</h5>
+          <hr />
+          <h5 className="mb-3">{totalRatingsString}</h5>
+        </div>
+      </div>
+
+      <hr />
+      {/* categories here accordions */}
+      {categories.map((category, index) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          showItems={index === showIndex}
+          setShowIndex={() => setShowIndex(index == showIndex ? null : index)}
+          dummy={dummy}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default RestaurantMenu;
