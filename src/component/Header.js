@@ -4,6 +4,7 @@ import About from "./About";
 import { useContext, useState } from "react";
 import useStatusOnline from "../../utils/useStatusOnline";
 import UserContext from "../../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const status = useStatusOnline();
@@ -11,6 +12,12 @@ const Header = () => {
 
   const data = useContext(UserContext);
   //console.log(data.loggedInUser);
+
+  //subscribing the store using the useSelector.
+  const cartitems = useSelector((store) => {
+    return store.cart.items;
+  });
+  console.log(cartitems);
 
   return (
     <div className="flex justify-between items-center border-2 border-black-200 h-28 p-4 m-3">
@@ -41,7 +48,11 @@ const Header = () => {
               Grocery
             </Link>
           </li>
-          <li>Cart</li>
+          <li className="font-medium">
+            <Link className="nav-link" to="/cart">
+              Cart ({cartitems.length})
+            </Link>
+          </li>
           <button
             className="login-btn"
             onClick={() => {

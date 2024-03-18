@@ -10,6 +10,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Suspense } from "react";
 import UserContext from "../../utils/UserContext";
 //import Grocery from "../component/Grocery";
+import { Provider } from "react-redux";
+import appStore from "../../utils/appStore";
+import Cart from "./Cart";
 
 //code spliting
 //chunking
@@ -28,13 +31,16 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
   return (
-    <UserContext.Provider value={{ loggedInUser: userName , setUserName }}>
-      <div className="app">
-        <Header />
-        {/* {if path = "/" then body component, if path = "/about" then about component etc} */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      {/* store as a props */}
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          {/* {if path = "/" then body component, if path = "/about" then about component etc} */}
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -54,6 +60,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/grocery",

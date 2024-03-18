@@ -1,5 +1,16 @@
+import { useDispatch } from "react-redux";
 import { card_img } from "../../utils/constant";
+import { addItem } from "../../utils/cardSlice";
+
 const ItemList = ({ items, dummy }) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (items)=>{
+    //dispatch an action
+    dispatch(addItem(items));
+  }
+
   return (
     <div>
       <ul>
@@ -27,7 +38,10 @@ const ItemList = ({ items, dummy }) => {
             </div>
             <div className="w-2/12">
               <div className="absolute m-auto">
-                <button className="px-2 shadow-lg mx-6 mt-16 bg-white border-2 border-gray rounded">
+                <button
+                  className="px-2 shadow-lg mx-6 mt-16 bg-white border-2 border-gray rounded"
+                  onClick={()=>handleAddItem(items)}
+                >
                   Add +
                 </button>
               </div>
